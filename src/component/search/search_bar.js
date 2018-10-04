@@ -7,23 +7,28 @@ class SearchBar extends Component {
 			term: ""
 		}
 	}
-	// onInputChange(event) {
-	// 	// console.log(event.target.value)
-	// 	this.setState({ term: event.target.value }).bind(this)
-	// 	// console.log(this.state)
-	// }
+
 	render() {
 		return (
-			<div className="row">
-				<div className="input-field col s6 offset-s3">
-					<input id="search" type="text" className="validate"
-						value={this.state.term}
-						onChange={event => this.setState({ term: event.target.value })} />
+			<form className="row">
+				<div className="form-group col-12">
+					{/* <label for="search">Search</label> */}
+					<input type="text" className="form-control" id="search" placeholder="Search" aria-describedby="searchHelp"
+						value = {this.state.term}
+						onChange = {event => this.onInputChage(event.target.value)} />
+					<small id="searchHelp" className="form-text text-muted">Enjoy React with Youtube API Search.</small>
+
 					{/* Value = {this.state.term} */}
 				</div>
-			</div>
+			</form>
 		)
 	}
+	
+	onInputChage(term) {
+		this.setState({ term });
+		this.props.onSearchTermChange(term);
+	}
 }
+
 
 export default SearchBar;
